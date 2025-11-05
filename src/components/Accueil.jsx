@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from "react";
 import "./Accueil.css";
+import "./Annonce.css";
 import { MessageSquare, TrendingUp, Megaphone, Home, User } from "lucide-react";
 import Forums from "./forums";
+import Annonce from "./Annonce";
 import ForumDetail from "./ForumDetail";
 
 export default function Accueil() {
@@ -28,6 +30,7 @@ export default function Accueil() {
       ],
     },
   ]);
+
 
   // --- Fonctions ---
   const addForum = (title, description) => {
@@ -110,7 +113,7 @@ export default function Accueil() {
           <ul>
             <li className="active"><Home size={18} /> <a href="#accueil">Accueil</a></li>
             <li onClick={() => setPage("forums")}><MessageSquare size={18} /> <a href="#forums">Forums</a></li>
-            <li><Megaphone size={18} /> <a href="#annonces">Annonces</a></li>
+            <li onClick={() => setPage("annonces")}><Megaphone size={18} /> <a href="#annonces">Annonces</a></li>
             <li><User size={18} /> <a href="#profil">Profil</a></li>
           </ul>
           <div className="sidebar-footer">© 2025 ITICETUD</div>
@@ -194,6 +197,11 @@ export default function Accueil() {
         onAddReply={addReply}
       />
     );
+  }
+
+  // --- Page annonces ---
+  if (page === "annonces") {
+    return <Annonce onNavigate={setPage} />;
   }
 
   return null;
