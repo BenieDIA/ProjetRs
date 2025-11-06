@@ -1,4 +1,4 @@
-/* 🌍 Reset global */
+
 html,
 body,
 #root {
@@ -11,14 +11,14 @@ body,
   color: #232323;
 }
 
-/* Dashboard */
+
 .dashboard {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-/* 🌟 Sidebar */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -86,7 +86,7 @@ body,
   border-top: 1px solid #ececf0;
 }
 
-/* Hamburger */
+
 .hamburger {
   position: fixed;
   top: 15px;
@@ -101,7 +101,7 @@ body,
   z-index: 1000;
 }
 
-/* Contenu principal */
+
 .main-content {
   flex-grow: 1;
   padding: 20px;
@@ -118,7 +118,7 @@ body,
   margin-left: 0;
 }
 
-/* Hero */
+
 .hero {
   position: relative;
   height: 250px;
@@ -192,7 +192,7 @@ body,
   border-radius: 20px;
 }
 
-/* Actions card */
+
 .actions-card {
   background: #ffffff;
   border-radius: 10px;
@@ -223,7 +223,7 @@ body,
   background: #1976d2;
 }
 
-/* Formulaire création forum */
+
 .forum-form {
   display: flex;
   flex-direction: column;

@@ -17,12 +17,12 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
 
   return (
     <div className="dashboard">
-      {/* Hamburger */}
+    
       <button className="hamburger" onClick={toggleSidebar}>
         ☰
       </button>
 
-      {/* Sidebar */}
+      
       <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
         <h2>ITICETUD</h2>
         <ul>
@@ -42,7 +42,7 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
         <div className="sidebar-footer">© 2025 ITICETUD</div>
       </nav>
 
-      {/* Contenu principal */}
+ 
       <div className={`main-content ${sidebarOpen ? "with-sidebar" : "full-width"}`}>
         <div className="forum-detail">
           <button className="back-btn" onClick={() => onNavigate("forums")}>
@@ -52,7 +52,7 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
           <h2 className="forum-title">{forum.title}</h2>
           <p className="forum-desc">{forum.description}</p>
 
-          {/* Liste des messages */}
+    
           <div className="messages-section">
             {forum.messages.length > 0 ? (
               forum.messages.map((msg) => (
@@ -63,7 +63,7 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
                   </div>
                   <p className="message-text">{msg.text}</p>
 
-                  {/* Réponses */}
+              
                   <div className="replies">
                     {msg.replies.map((r) => (
                       <div key={r.id} className="reply-card">
@@ -75,7 +75,7 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
                     ))}
                   </div>
 
-                  {/* Répondre */}
+           
                   <ReplyForm
                     forumId={forum.id}
                     messageId={msg.id}
@@ -88,7 +88,6 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
             )}
           </div>
 
-          {/* Nouveau message */}
           <form onSubmit={handleSend} className="new-message-form">
             <textarea
               value={message}
@@ -103,7 +102,6 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
   );
 }
 
-// --- Composant interne pour les réponses ---
 function ReplyForm({ forumId, messageId, onAddReply }) {
   const [reply, setReply] = useState("");
   const handleReply = (e) => {

@@ -1,11 +1,10 @@
-/* Conteneur global */
+
 .forum-detail {
   padding: 2rem;
-  background: #f4f6fa; /* même que le reste de l'app */
+  background: #f4f6fa; 
   min-height: 100vh;
 }
 
-/* Titres */
 .forum-title {
   font-size: 1.8rem;
   margin-bottom: 0.3rem;
@@ -16,7 +15,7 @@
   margin-bottom: 2rem;
 }
 
-/* Bouton retour */
+
 .back-btn {
   background: none;
   border: none;
@@ -26,7 +25,7 @@
   margin-bottom: 1rem;
 }
 
-/* Messages */
+
 .messages-section {
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@
 }
 
 .message-card {
-  background: #ffffff; /* blanc unifié */
+  background: #ffffff; 
   border-radius: 1rem;
   padding: 1rem 1.2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -80,13 +79,13 @@
 }
 
 .reply-card {
-  background: #ffffff; /* blanc uniforme */
+  background: #ffffff; 
   border-radius: 0.6rem;
   padding: 0.4rem 0.8rem;
-  border: 1px solid #ececf0; /* bordure claire pour uniformité */
+  border: 1px solid #ececf0;
 }
 
-/* Formulaire de réponse */
+
 .reply-form {
   display: flex;
   gap: 0.5rem;
@@ -97,9 +96,9 @@
   flex: 1;
   padding: 0.5rem;
   border-radius: 0.4rem;
-  border: 1px solid #ececf0; /* bordure uniforme */
-  background: #ffffff;       /* blanc */
-  color: #232323;            /* texte sombre */
+  border: 1px solid #ececf0; 
+  background: #ffffff;       
+  color: #232323;          
 }
 
 .reply-form button {
@@ -111,7 +110,7 @@
   cursor: pointer;
 }
 
-/* Formulaire nouveau message */
+
 .new-message-form {
   display: flex;
   flex-direction: column;
@@ -124,8 +123,8 @@
   border-radius: 0.5rem;
   border: 1px solid #ececf0;
   min-height: 100px;
-  background: #ffffff;       /* blanc */
-  color: #232323;            /* texte sombre */
+  background: #ffffff;       
+  color: #232323;          
   font-family: Arial, sans-serif;
 }
 
@@ -140,7 +139,7 @@
   font-weight: bold;
 }
 
-/* Message vide */
+
 .no-message {
   color: #777;
   font-style: italic;
