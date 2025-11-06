@@ -43,7 +43,7 @@ export default function Annonce({ onNavigate }) {
         epingler: false,
       },
       {
-        id: 2,
+        id: 3,
         titre: "Plateforme d'échange Etudiants",
         description: "Echanger, publier des annonces, discuter, et interagir autour de différents sujets liés à la vie étudiante",
         categorie: "Projet",
