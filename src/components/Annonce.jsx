@@ -30,7 +30,7 @@ export default function Annonce({ onNavigate }) {
         auteur: "Admin",
         date: "2025-11-01",
         vues: 12,
-        epingler: false,
+        epingler: true,
       },
       {
         id: 2,
@@ -40,8 +40,19 @@ export default function Annonce({ onNavigate }) {
         auteur: "ITIC",
         date: "2025-10-28",
         vues: 25,
-        epingler: true,
+        epingler: false,
       },
+      {
+        id: 2,
+        titre: "Plateforme d'échange Etudiants",
+        description: "Echanger, publier des annonces, discuter, et interagir autour de différents sujets liés à la vie étudiante",
+        categorie: "Projet",
+        auteur: "ITIC DEVS",
+        date: "2025-11-07",
+        vues: 5,
+        epingler: false,
+      },
+
     ];
     setAnnonces(fakeData);
     setFiltered(fakeData);
@@ -123,7 +134,7 @@ export default function Annonce({ onNavigate }) {
             className="hero-image"
           />
           <div className="hero-overlay">
-            <h2>Bienvenue sur les annonces 📢</h2>
+            <h2>ANNONCES ITICETUD</h2>
             <p>Découvrez ou publiez des opportunités pour la communauté ITIC</p>
           </div>
         </div>
@@ -215,14 +226,14 @@ export default function Annonce({ onNavigate }) {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="Titre"
+                placeholder="Titre de votre annonce"
                 value={newAnnonce.titre}
                 onChange={(e) =>
                   setNewAnnonce({ ...newAnnonce, titre: e.target.value })
                 }
               />
               <textarea
-                placeholder="Description"
+                placeholder="Décrivez votre annonce"
                 value={newAnnonce.description}
                 onChange={(e) =>
                   setNewAnnonce({
