@@ -3,14 +3,17 @@ import "./Accueil.css";
 import { MessageSquare, TrendingUp, Megaphone, Home, User } from "lucide-react";
 import Forums from "./forums";
 import ForumDetail from "./ForumDetail";
+import Annonce from "./Annonce";
+import Profil from "./Profil";
+
 
 export default function Accueil() {
-  // --- Hooks principaux ---
+
   const [page, setPage] = useState("home");
   const [selectedForum, setSelectedForum] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  // --- Données locales ---
+
   const [forums, setForums] = useState([
     {
       id: 1,
@@ -29,7 +32,7 @@ export default function Accueil() {
     },
   ]);
 
-  // --- Fonctions ---
+
   const addForum = (title, description) => {
     const newForum = {
       id: Date.now(),
@@ -75,7 +78,7 @@ export default function Accueil() {
     }
   };
 
-  // --- Forums récents (useMemo pour performance) ---
+  
   const recentForums = useMemo(() => {
     const sorted = [...forums].sort((a, b) => b.id - a.id);
     return sorted.slice(0, 4).map((f) => ({
@@ -92,7 +95,7 @@ export default function Accueil() {
     }));
   }, [forums]);
 
-  // --- Page d'accueil ---
+
   if (page === "home") {
     const stats = [
       { label: "Discussions actives", value: "45", icon: <TrendingUp />, color: "#4caf50" },
@@ -104,20 +107,20 @@ export default function Accueil() {
       <div className="dashboard">
         <button className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
 
-        {/* Sidebar */}
+  
         <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <h2>ITICETUD</h2>
           <ul>
             <li className="active"><Home size={18} /> <a href="#accueil">Accueil</a></li>
             <li onClick={() => setPage("forums")}><MessageSquare size={18} /> <a href="#forums">Forums</a></li>
-            <li><Megaphone size={18} /> <a href="#annonces">Annonces</a></li>
-            <li><User size={18} /> <a href="#profil">Profil</a></li>
+            <li onClick={() => setPage("annonces")}><Megaphone size={18} /> <a href="#annonces">Annonces</a></li>
+            <li onClick={() => setPage("profil")}><User size={18} /> <a href="#profil">Profil</a></li>
           </ul>
           <div className="sidebar-footer">© 2025 ITICETUD</div>
         </nav>
 
         <div className={`main-content ${sidebarOpen ? "with-sidebar" : "full-width"}`}>
-          {/* Hero */}
+       
           <div className="hero">
             <img
               src="https://images.unsplash.com/photo-1693011142814-aa33d7d1535c?auto=format&fit=crop&w=1200&q=80"
@@ -130,7 +133,7 @@ export default function Accueil() {
             </div>
           </div>
 
-          {/* Stats */}
+      
           <div className="stats-grid">
             {stats.map((stat, index) => (
               <div key={index} className="stat-card">
@@ -143,7 +146,7 @@ export default function Accueil() {
             ))}
           </div>
 
-          {/* Forums récents */}
+
           <div className="activities-card">
             <h3>Forums récents</h3>
             {recentForums.map((forum, index) => (
@@ -157,7 +160,7 @@ export default function Accueil() {
             ))}
           </div>
 
-          {/* Actions rapides */}
+      
           <div className="actions-card">
             <h3>Actions rapides</h3>
             <div className="actions-grid">
@@ -172,29 +175,40 @@ export default function Accueil() {
     );
   }
 
-  // --- Page forums ---
-  if (page === "forums") {
-    return (
-      <Forums
-        forums={forums}
-        onNavigate={setPage}
-        onCreateForum={addForum}
-        onSelectForum={(f) => { setSelectedForum(f); setPage("forumDetail"); }}
-      />
-    );
-  }
+if (page === "forums") {
+  return (
+    <Forums
+      forums={forums}
+      onNavigate={setPage}
+      onCreateForum={addForum}
+      onSelectForum={(f) => { setSelectedForum(f); setPage("forumDetail"); }}
+      currentPage={page}
+    />
+  );
+}
 
-  // --- Détail d’un forum ---
-  if (page === "forumDetail" && selectedForum) {
-    return (
-      <ForumDetail
-        forum={selectedForum}
-        onNavigate={setPage}
-        onAddMessage={addMessage}
-        onAddReply={addReply}
-      />
-    );
-  }
+if (page === "forumDetail" && selectedForum) {
+  return (
+    <ForumDetail
+      forum={selectedForum}
+      onNavigate={setPage}   
+      onAddMessage={addMessage}
+      onAddReply={addReply}
+      currentPage={page}     
+    />
+  );
+}
+  if (page === "annonces") {
+  return <Annonce onNavigate={setPage} />;
+}
+if (page === "profil") {
+  return (
+    <Profil 
+      onNavigate={(route) => setPage(route)} 
+      currentPage="profil" 
+    />
+  );
+}
 
   return null;
 }

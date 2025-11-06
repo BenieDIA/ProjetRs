@@ -24,15 +24,24 @@ export default function Forums({ forums, onNavigate, onCreateForum, onSelectForu
       <button className="hamburger" onClick={toggleSidebar}>☰</button>
 
       <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
-        <h2>ITICETUD</h2>
-        <ul>
-          <li onClick={() => onNavigate("home")}><Home size={18} /> Accueil</li>
-          <li className="active"><MessageSquare size={18} /> Forums</li>
-          <li><Megaphone size={18} /> Annonces</li>
-          <li><User size={18} /> Profil</li>
-        </ul>
-        <div className="sidebar-footer">© 2025 ITICETUD</div>
-      </nav>
+  <h2>ITICETUD</h2>
+  <ul>
+    <li onClick={() => onNavigate("home")}>
+      <Home size={18} /> <span>Accueil</span>
+    </li>
+    <li onClick={() => onNavigate("forums")}>
+      <MessageSquare size={18} /> <span>Forums</span>
+    </li>
+    <li onClick={() => onNavigate("annonces")}>
+      <Megaphone size={18} /> <span>Annonces</span>
+    </li>
+    <li onClick={() => onNavigate("profil")}>
+      <User size={18} /> <span>Profil</span>
+    </li>
+  </ul>
+  <div className="sidebar-footer">© 2025 ITICETUD</div>
+</nav>
+
 
       <div className={`main-content ${sidebarOpen ? "with-sidebar" : "full-width"}`}>
         <div className="hero">
