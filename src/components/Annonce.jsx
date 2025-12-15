@@ -52,12 +52,12 @@ export default function Annonce({ onNavigate }) {
         vues: 5,
         epingler: false,
       },
-
     ];
     setAnnonces(fakeData);
     setFiltered(fakeData);
   }, []);
 
+  
   // --- Filtres + recherche + tri
   useEffect(() => {
     let result = annonces.filter((a) =>
@@ -112,36 +112,30 @@ export default function Annonce({ onNavigate }) {
       </button>
 
       {/* --- Sidebar identique à Accueil --- */}
-   <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
-  <h2>ITICETUD</h2>
-  <ul>
-    <li onClick={() => onNavigate("home")}>
-      <Home size={18} /> <span>Accueil</span>
-    </li>
-    <li onClick={() => onNavigate("forums")}>
-      <MessageSquare size={18} /> <span>Forums</span>
-    </li>
-    <li onClick={() => onNavigate("annonces")}>
-      <Megaphone size={18} /> <span>Annonces</span>
-    </li>
-    <li onClick={() => onNavigate("profil")}>
-      <User size={18} /> <span>Profil</span>
-    </li>
-  </ul>
-  <div className="sidebar-footer">© 2025 ITICETUD</div>
-</nav>
-
+      <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
+        <h2>ITICETUD</h2>
+        <ul>
+          <li onClick={() => onNavigate("home")}>
+            <Home size={18} /> <span>Accueil</span>
+          </li>
+          <li onClick={() => onNavigate("forums")}>
+            <MessageSquare size={18} /> <span>Forums</span>
+          </li>
+          <li onClick={() => onNavigate("annonces")}>
+            <Megaphone size={18} /> <span>Annonces</span>
+          </li>
+          <li onClick={() => onNavigate("profil")}>
+            <User size={18} /> <span>Profil</span>
+          </li>
+        </ul>
+        <div className="sidebar-footer">© 2025 ITICETUD</div>
+      </nav>
 
       {/* --- Contenu principal --- */}
       <div className={`main-content ${sidebarOpen ? "with-sidebar" : "full-width"}`}>
-        
         {/* --- Hero (même que dans Accueil) --- */}
         <div className="hero">
-          <img
-            src="https://images.unsplash.com/photo-1693011142814-aa33d7d1535c?auto=format&fit=crop&w=1200&q=80"
-            alt="Campus"
-            className="hero-image"
-          />
+          <img src="https://images.unsplash.com/photo-1693011142814-aa33d7d1535c?auto=format&fit=crop&w=1200&q=80" alt="Campus" className="hero-image"/>
           <div className="hero-overlay">
             <h2>ANNONCES ITICETUD</h2>
             <p>Découvrez ou publiez des opportunités pour la communauté ITIC</p>
@@ -162,33 +156,19 @@ export default function Annonce({ onNavigate }) {
 
           {/* Barre de recherche */}
           <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Rechercher une annonce..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <input type="text" placeholder="Rechercher une annonce..." value={search} onChange={(e) => setSearch(e.target.value)}/>
           </div>
 
           {/* Filtres */}
           <div className="filters">
             {["Toutes", "Événement", "Stage", "Projet", "Important", "Général"].map(
               (cat) => (
-                <button
-                  key={cat}
-                  className={`filter-btn ${categorie === cat ? "active" : ""}`}
-                  onClick={() => setCategorie(cat)}
-                >
+                <button key={cat} className={`filter-btn ${categorie === cat ? "active" : ""}`} onClick={() => setCategorie(cat)}>
                   {cat}
                 </button>
               )
             )}
-
-            <select
-              className="tri-select"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-            >
+            <select className="tri-select" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
               <option value="recent">Plus récentes</option>
               <option value="ancien">Plus anciennes</option>
             </select>
@@ -197,10 +177,7 @@ export default function Annonce({ onNavigate }) {
           {/* Liste des annonces */}
           <div className="annonce-list">
             {filtered.map((a) => (
-              <div
-                key={a.id}
-                className={`annonce-card ${a.epingler ? "epinglee" : ""}`}
-              >
+              <div key={a.id} className={`annonce-card ${a.epingler ? "epinglee" : ""}`}>
                 <div className="annonce-info">
                   <div className="annonce-top">
                     <h3>{a.titre}</h3>
@@ -215,10 +192,7 @@ export default function Annonce({ onNavigate }) {
                     <span>• {a.vues} vues</span>
                   </div>
                 </div>
-                <button
-                  className="btn-epingle"
-                  onClick={() => toggleEpingler(a.id)}
-                >
+                <button className="btn-epingle" onClick={() => toggleEpingler(a.id)}>
                   {a.epingler ? "★ Épinglée" : "☆ Épingler"}
                 </button>
               </div>
@@ -233,30 +207,9 @@ export default function Annonce({ onNavigate }) {
           <div className="modal">
             <h3>Publier une nouvelle annonce</h3>
             <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Titre de votre annonce"
-                value={newAnnonce.titre}
-                onChange={(e) =>
-                  setNewAnnonce({ ...newAnnonce, titre: e.target.value })
-                }
-              />
-              <textarea
-                placeholder="Décrivez votre annonce"
-                value={newAnnonce.description}
-                onChange={(e) =>
-                  setNewAnnonce({
-                    ...newAnnonce,
-                    description: e.target.value,
-                  })
-                }
-              />
-              <select
-                value={newAnnonce.categorie}
-                onChange={(e) =>
-                  setNewAnnonce({ ...newAnnonce, categorie: e.target.value })
-                }
-              >
+              <input type="text" placeholder="Titre de votre annonce" value={newAnnonce.titre} onChange={(e) => setNewAnnonce({ ...newAnnonce, titre: e.target.value })}/>
+              <textarea placeholder="Décrivez votre annonce" value={newAnnonce.description} onChange={(e) => setNewAnnonce({...newAnnonce, description: e.target.value,})}/>
+              <select value={newAnnonce.categorie} onChange={(e) => setNewAnnonce({ ...newAnnonce, categorie: e.target.value })}>
                 <option value="">Choisir une catégorie</option>
                 <option value="Événement">Événement</option>
                 <option value="Stage">Stage</option>
@@ -264,23 +217,12 @@ export default function Annonce({ onNavigate }) {
                 <option value="Important">Important</option>
                 <option value="Général">Général</option>
               </select>
-              <input
-                type="text"
-                placeholder="Auteur"
-                value={newAnnonce.auteur}
-                onChange={(e) =>
-                  setNewAnnonce({ ...newAnnonce, auteur: e.target.value })
-                }
-              />
+              <input type="text" placeholder="Auteur" value={newAnnonce.auteur} onChange={(e) => setNewAnnonce({ ...newAnnonce, auteur: e.target.value })}/>
               <div className="modal-actions">
                 <button type="submit" className="btn-submit">
                   Publier
                 </button>
-                <button
-                  type="button"
-                  className="btn-cancel"
-                  onClick={() => setShowModal(false)}
-                >
+                <button type="button" className="btn-cancel" onClick={() => setShowModal(false)}>
                   Annuler
                 </button>
               </div>
