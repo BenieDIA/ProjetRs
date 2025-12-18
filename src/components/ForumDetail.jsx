@@ -8,8 +8,8 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  const handleSend = (e) => {
-    e.preventDefault();
+  const handleSend = (event) => {
+    event.preventDefault();
     if (!message.trim()) return;
     onAddMessage(forum.id, "Moi", message);
     setMessage("");
@@ -65,11 +65,11 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
 
               
                   <div className="replies">
-                    {msg.replies.map((r) => (
-                      <div key={r.id} className="reply-card">
-                        <div className="avatar small">{r.author.charAt(0)}</div>
+                    {msg.replies.map((reponse) => (
+                      <div key={reponse.id} className="reply-card">
+                        <div className="avatar small">{reponse.author.charAt(0)}</div>
                         <p>
-                          <strong>{r.author} :</strong> {r.text}
+                          <strong>{reponse.author} :</strong> {reponse.text}
                         </p>
                       </div>
                     ))}
@@ -91,7 +91,7 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
           <form onSubmit={handleSend} className="new-message-form">
             <textarea
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(event) => setMessage(event.target.value)}
               placeholder="Écrivez un message..."
             />
             <button type="submit">Envoyer</button>
@@ -104,8 +104,8 @@ export default function ForumDetail({ forum, onNavigate, onAddMessage, onAddRepl
 
 function ReplyForm({ forumId, messageId, onAddReply }) {
   const [reply, setReply] = useState("");
-  const handleReply = (e) => {
-    e.preventDefault();
+  const handleReply = (event) => {
+    event.preventDefault();
     if (!reply.trim()) return;
     onAddReply(forumId, messageId, "Moi", reply);
     setReply("");
@@ -116,7 +116,7 @@ function ReplyForm({ forumId, messageId, onAddReply }) {
       <input
         type="text"
         value={reply}
-        onChange={(e) => setReply(e.target.value)}
+        onChange={(event) => setReply(event.target.value)}
         placeholder="Répondre..."
       />
       <button type="submit">↩️</button>

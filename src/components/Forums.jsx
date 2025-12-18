@@ -10,8 +10,8 @@ export default function Forums({ forums, onNavigate, onCreateForum, onSelectForu
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (!title.trim()) return;
     onCreateForum(title, description);
     setTitle("");
@@ -76,12 +76,12 @@ export default function Forums({ forums, onNavigate, onCreateForum, onSelectForu
                 type="text"
                 placeholder="Titre du forum"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(event) => setTitle(event.target.value)}
               />
               <textarea
                 placeholder="Description"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(event) => setDescription(event.target.value)}
               />
               <button type="submit">Créer</button>
             </form>

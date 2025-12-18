@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Accueil.css";
 import "./Annonce.css";
-import { MessageSquare, TrendingUp, Megaphone, Home, User } from "lucide-react";
+import { MessageSquare, Megaphone, Home, User } from "lucide-react";
 
 export default function Annonce({ onNavigate }) {
   const [annonces, setAnnonces] = useState([]);
@@ -19,7 +19,7 @@ export default function Annonce({ onNavigate }) {
     auteur: "",
   });
 
-  // stock des données directement React sans passer par json-server
+  // --- Données simulées (sans json-server)
   useEffect(() => {
     const fakeData = [
       {
@@ -44,8 +44,9 @@ export default function Annonce({ onNavigate }) {
       },
       {
         id: 3,
-        titre: "Plateforme d'échange Etudiants",
-        description: "Echanger, publier des annonces, discuter, et interagir autour de différents sujets liés à la vie étudiante",
+        titre: "Plateforme d'échange Étudiants",
+        description:
+          "Échanger, publier des annonces, discuter et interagir autour de la vie étudiante",
         categorie: "Projet",
         auteur: "ITIC DEVS",
         date: "2025-11-07",
@@ -53,40 +54,58 @@ export default function Annonce({ onNavigate }) {
         epingler: false,
       },
     ];
+
     setAnnonces(fakeData);
     setFiltered(fakeData);
   }, []);
 
+<<<<<<< HEAD
   
   // --- Filtres + recherche + tri
+=======
+  // --- Recherche + filtres + tri
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
   useEffect(() => {
-    let result = annonces.filter((a) =>
-      a.titre.toLowerCase().includes(search.toLowerCase())
+    let result = annonces.filter((annonce) =>
+      annonce.titre.toLowerCase().includes(search.toLowerCase())
     );
 
     if (categorie !== "Toutes") {
-      result = result.filter((a) => a.categorie === categorie);
+      result = result.filter(
+        (annonce) => annonce.categorie === categorie
+      );
     }
 
-    result.sort((a, b) => {
-      if (sortOrder === "recent") return new Date(b.date) - new Date(a.date);
-      else return new Date(a.date) - new Date(b.date);
+    result.sort((annonce1, annonce2) => {
+      if (sortOrder === "recent") {
+        return new Date(annonce2.date) - new Date(annonce1.date);
+      } else {
+        return new Date(annonce1.date) - new Date(annonce2.date);
+      }
     });
 
     setFiltered(result);
   }, [search, categorie, sortOrder, annonces]);
 
-  const toggleEpingler = (id) => {
-    const updated = annonces.map((a) =>
-      a.id === id ? { ...a, epingler: !a.epingler } : a
+  // --- Épingler / désépingler
+  const toggleEpingler = (annonceId) => {
+    const updatedAnnonces = annonces.map((annonce) =>
+      annonce.id === annonceId
+        ? { ...annonce, epingler: !annonce.epingler }
+        : annonce
     );
-    setAnnonces(updated);
+    setAnnonces(updatedAnnonces);
   };
 
-  // --- Publication d'une annonce (simulation)
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!newAnnonce.titre || !newAnnonce.description || !newAnnonce.categorie) {
+  // --- Publication d'une annonce
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      !newAnnonce.titre ||
+      !newAnnonce.description ||
+      !newAnnonce.categorie
+    ) {
       alert("Veuillez remplir tous les champs !");
       return;
     }
@@ -101,17 +120,29 @@ export default function Annonce({ onNavigate }) {
 
     setAnnonces([annonceToAdd, ...annonces]);
     setShowModal(false);
-    setNewAnnonce({ titre: "", description: "", categorie: "", auteur: "" });
+    setNewAnnonce({
+      titre: "",
+      description: "",
+      categorie: "",
+      auteur: "",
+    });
   };
 
   return (
     <div className="dashboard">
-      {/* --- Bouton hamburger --- */}
-      <button className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>
+      {/* Bouton hamburger */}
+      <button
+        className="hamburger"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
         ☰
       </button>
 
+<<<<<<< HEAD
       {/* --- Sidebar identique à Accueil --- */}
+=======
+      {/* Sidebar */}
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
       <nav className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
         <h2>ITICETUD</h2>
         <ul>
@@ -131,36 +162,63 @@ export default function Annonce({ onNavigate }) {
         <div className="sidebar-footer">© 2025 ITICETUD</div>
       </nav>
 
+<<<<<<< HEAD
       {/* --- Contenu principal --- */}
       <div className={`main-content ${sidebarOpen ? "with-sidebar" : "full-width"}`}>
         {/* --- Hero (même que dans Accueil) --- */}
+=======
+      {/* Contenu principal */}
+      <div
+        className={`main-content ${
+          sidebarOpen ? "with-sidebar" : "full-width"
+        }`}
+      >
+        {/* Hero */}
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
         <div className="hero">
           <img src="https://images.unsplash.com/photo-1693011142814-aa33d7d1535c?auto=format&fit=crop&w=1200&q=80" alt="Campus" className="hero-image"/>
           <div className="hero-overlay">
             <h2>ANNONCES ITICETUD</h2>
-            <p>Découvrez ou publiez des opportunités pour la communauté ITIC</p>
+            <p>
+              Découvrez ou publiez des opportunités pour la communauté ITIC
+            </p>
           </div>
         </div>
 
-        {/* --- Bloc annonces --- */}
+        {/* Bloc annonces */}
         <main className="annonce-container">
           <div className="annonce-header">
             <div>
               <h2>Annonces</h2>
               <p>Partagez des opportunités avec la communauté</p>
             </div>
-            <button className="btn-publier" onClick={() => setShowModal(true)}>
+            <button
+              className="btn-publier"
+              onClick={() => setShowModal(true)}
+            >
               + Publier une annonce
             </button>
           </div>
 
-          {/* Barre de recherche */}
+          {/* Recherche */}
           <div className="search-bar">
+<<<<<<< HEAD
             <input type="text" placeholder="Rechercher une annonce..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+=======
+            <input
+              type="text"
+              placeholder="Rechercher une annonce..."
+              value={search}
+              onChange={(event) =>
+                setSearch(event.target.value)
+              }
+            />
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
           </div>
 
           {/* Filtres */}
           <div className="filters">
+<<<<<<< HEAD
             {["Toutes", "Événement", "Stage", "Projet", "Important", "Général"].map(
               (cat) => (
                 <button key={cat} className={`filter-btn ${categorie === cat ? "active" : ""}`} onClick={() => setCategorie(cat)}>
@@ -169,6 +227,34 @@ export default function Annonce({ onNavigate }) {
               )
             )}
             <select className="tri-select" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+=======
+            {[
+              "Toutes",
+              "Événement",
+              "Stage",
+              "Projet",
+              "Important",
+              "Général",
+            ].map((cat) => (
+              <button
+                key={cat}
+                className={`filter-btn ${
+                  categorie === cat ? "active" : ""
+                }`}
+                onClick={() => setCategorie(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+
+            <select
+              className="tri-select"
+              value={sortOrder}
+              onChange={(event) =>
+                setSortOrder(event.target.value)
+              }
+            >
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
               <option value="recent">Plus récentes</option>
               <option value="ancien">Plus anciennes</option>
             </select>
@@ -176,24 +262,54 @@ export default function Annonce({ onNavigate }) {
 
           {/* Liste des annonces */}
           <div className="annonce-list">
+<<<<<<< HEAD
             {filtered.map((a) => (
               <div key={a.id} className={`annonce-card ${a.epingler ? "epinglee" : ""}`}>
+=======
+            {filtered.map((annonce) => (
+              <div
+                key={annonce.id}
+                className={`annonce-card ${
+                  annonce.epingler ? "epinglee" : ""
+                }`}
+              >
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
                 <div className="annonce-info">
                   <div className="annonce-top">
-                    <h3>{a.titre}</h3>
-                    <span className={`badge cat-${a.categorie.toLowerCase()}`}>
-                      {a.categorie}
+                    <h3>{annonce.titre}</h3>
+                    <span
+                      className={`badge cat-${annonce.categorie.toLowerCase()}`}
+                    >
+                      {annonce.categorie}
                     </span>
                   </div>
-                  <p>{a.description}</p>
+
+                  <p>{annonce.description}</p>
+
                   <div className="annonce-meta">
-                    <span>{a.auteur}</span>
-                    <span>• {new Date(a.date).toLocaleDateString()}</span>
-                    <span>• {a.vues} vues</span>
+                    <span>{annonce.auteur}</span>
+                    <span>
+                      •{" "}
+                      {new Date(annonce.date).toLocaleDateString()}
+                    </span>
+                    <span>• {annonce.vues} vues</span>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <button className="btn-epingle" onClick={() => toggleEpingler(a.id)}>
                   {a.epingler ? "★ Épinglée" : "☆ Épingler"}
+=======
+
+                <button
+                  className="btn-epingle"
+                  onClick={() =>
+                    toggleEpingler(annonce.id)
+                  }
+                >
+                  {annonce.epingler
+                    ? "★ Épinglée"
+                    : "☆ Épingler"}
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
                 </button>
               </div>
             ))}
@@ -201,15 +317,51 @@ export default function Annonce({ onNavigate }) {
         </main>
       </div>
 
-      {/* --- Modal publication --- */}
+      {/* Modal publication */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
             <h3>Publier une nouvelle annonce</h3>
+
             <form onSubmit={handleSubmit}>
+<<<<<<< HEAD
               <input type="text" placeholder="Titre de votre annonce" value={newAnnonce.titre} onChange={(e) => setNewAnnonce({ ...newAnnonce, titre: e.target.value })}/>
               <textarea placeholder="Décrivez votre annonce" value={newAnnonce.description} onChange={(e) => setNewAnnonce({...newAnnonce, description: e.target.value,})}/>
               <select value={newAnnonce.categorie} onChange={(e) => setNewAnnonce({ ...newAnnonce, categorie: e.target.value })}>
+=======
+              <input
+                type="text"
+                placeholder="Titre de votre annonce"
+                value={newAnnonce.titre}
+                onChange={(event) =>
+                  setNewAnnonce({
+                    ...newAnnonce,
+                    titre: event.target.value,
+                  })
+                }
+              />
+
+              <textarea
+                placeholder="Décrivez votre annonce"
+                value={newAnnonce.description}
+                onChange={(event) =>
+                  setNewAnnonce({
+                    ...newAnnonce,
+                    description: event.target.value,
+                  })
+                }
+              />
+
+              <select
+                value={newAnnonce.categorie}
+                onChange={(event) =>
+                  setNewAnnonce({
+                    ...newAnnonce,
+                    categorie: event.target.value,
+                  })
+                }
+              >
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
                 <option value="">Choisir une catégorie</option>
                 <option value="Événement">Événement</option>
                 <option value="Stage">Stage</option>
@@ -217,7 +369,23 @@ export default function Annonce({ onNavigate }) {
                 <option value="Important">Important</option>
                 <option value="Général">Général</option>
               </select>
+<<<<<<< HEAD
               <input type="text" placeholder="Auteur" value={newAnnonce.auteur} onChange={(e) => setNewAnnonce({ ...newAnnonce, auteur: e.target.value })}/>
+=======
+
+              <input
+                type="text"
+                placeholder="Auteur"
+                value={newAnnonce.auteur}
+                onChange={(event) =>
+                  setNewAnnonce({
+                    ...newAnnonce,
+                    auteur: event.target.value,
+                  })
+                }
+              />
+
+>>>>>>> 8581835 (J’ai corrigé les mauvaises pratiques de code dans les fichiers Profil.jsx, Forum.jsx, ForumDetail.jsx et Annonce.jsx)
               <div className="modal-actions">
                 <button type="submit" className="btn-submit">
                   Publier
