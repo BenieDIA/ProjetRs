@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import "./Accueil.css";
 import { MessageSquare, TrendingUp, Megaphone, Home, User } from "lucide-react";
-import Forums from "./forums";
+import Forums from "./Forums";
 import ForumDetail from "./ForumDetail";
 import Annonce from "./Annonce";
 import Profil from "./Profil";

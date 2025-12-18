@@ -15,8 +15,8 @@ export default function Profil({ onNavigate, currentPage }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: 'Malek Chaouche',
-    email: 'malek.chaouche@iticparis.com',
+    name: 'Khaled Djait',
+    email: 'kdjait@iticparis.com',
     location: 'Paris, France',
     memberSince: 'Membre depuis Septembre 2023',
     bio: "Étudiant en informatique passionné par le développement web et l'intelligence artificielle. J'aime partager mes connaissances et apprendre avec les autres.",
@@ -27,12 +27,12 @@ export default function Profil({ onNavigate, currentPage }) {
   const coverInputRef = useRef(null);
   const profileInputRef = useRef(null);
 
-  const handleCoverSelect = (e) => {
-    const file = e.target.files && e.target.files[0];
+  const handleCoverSelect = (event) => {
+    const file = event.target.files && event.target.files[0];
     if (file) setCoverImageUrl(URL.createObjectURL(file));
   };
-  const handleProfileSelect = (e) => {
-    const file = e.target.files && e.target.files[0];
+  const handleProfileSelect = (event) => {
+    const file = event.target.files && event.target.files[0];
     if (file) setProfileImageUrl(URL.createObjectURL(file));
   };
 
@@ -128,7 +128,7 @@ export default function Profil({ onNavigate, currentPage }) {
                         <input
                           type="text"
                           value={draft.name}
-                          onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+                          onChange={(event) => setDraft({ ...draft, name: event.target.value })}
                           style={{ fontSize: 24, padding: 6, marginBottom: 6, width: '100%' }}
                         />
                         <p style={{ margin: '6px 0 10px 0', color: '#717182' }}>Informatique • 3ème année - Bachelor</p>
@@ -138,7 +138,7 @@ export default function Profil({ onNavigate, currentPage }) {
                             <input
                               type="email"
                               value={draft.email}
-                              onChange={(e) => setDraft({ ...draft, email: e.target.value })}
+                              onChange={(event) => setDraft({ ...draft, email: event.target.value })}
                               style={{ padding: 6, width: '100%' }}
                             />
                           </div>
@@ -147,7 +147,7 @@ export default function Profil({ onNavigate, currentPage }) {
                             <input
                               type="text"
                               value={draft.location}
-                              onChange={(e) => setDraft({ ...draft, location: e.target.value })}
+                              onChange={(event) => setDraft({ ...draft, location: event.target.value })}
                               style={{ padding: 6, width: '100%' }}
                             />
                           </div>
@@ -193,7 +193,7 @@ export default function Profil({ onNavigate, currentPage }) {
                   <div className="profile-bio">
                     <textarea
                       value={draft.bio}
-                      onChange={(e) => setDraft({ ...draft, bio: e.target.value })}
+                      onChange={(event) => setDraft({ ...draft, bio: event.target.value })}
                       rows={4}
                       style={{ width: '100%', padding: 10 }}
                     />
